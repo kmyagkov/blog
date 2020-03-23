@@ -1,6 +1,8 @@
 <template>
   <nav class="navigation">
-    <h1 class="navigation__title">SSR Blog</h1>
+    <h1 class="navigation__title">
+      SSR Blog
+    </h1>
   </nav>
 </template>
 

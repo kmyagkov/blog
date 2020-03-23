@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-header>
+    <el-header height="auto">
       <AppNavigation />
     </el-header>
     <el-main>

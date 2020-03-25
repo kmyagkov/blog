@@ -21,13 +21,13 @@
 import AppPost from '~/components/Post'
 
 export default {
+  components: {
+    AppPost
+  },
   head () {
     return {
       title: 'Main'
     }
-  },
-  components: {
-    AppPost
   }
 }
 </script>

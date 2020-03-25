@@ -5,8 +5,8 @@
     :body-style="{padding: 0}"
   >
     <header
-      class="post__header"
       slot="header"
+      class="post__header"
     >
       <h3>Post title</h3>
       <small>{{ new Date().toLocaleString() }}</small>
@@ -38,7 +38,7 @@
 export default {
   methods: {
     openPost () {
-
+      this.$router.push(`/post/${this.$route.params.id}`)
     }
   }
 }
@@ -48,6 +48,13 @@ export default {
 .post {
   &:not(:last-of-type) {
     margin-bottom: 2rem;
+  }
+}
+
+.post__image {
+  img {
+    width: 100%;
+    height: auto;
   }
 }
 

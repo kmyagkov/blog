@@ -9,7 +9,7 @@
       class="post__header"
     >
       <h3>Post title</h3>
-      <small>{{ new Date().toLocaleString() }}</small>
+      <time>{{ new Date().toLocaleString() }}</time>
     </header>
     <div class="post__body">
       <div class="post__image">

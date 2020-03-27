@@ -1,6 +1,8 @@
 <template>
   <div class="error">
-    <h1 class="error__title">Something went wrong :(</h1>
+    <h1 class="error__title">
+      Something went wrong :(
+    </h1>
     <nuxt-link
       to="/"
       tag="el-link"

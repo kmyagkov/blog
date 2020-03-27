@@ -10,7 +10,7 @@
 .navigation {
   display: flex;
   justify-content: center;
-  border-bottom: 1px solid #909399;
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navigation__title {

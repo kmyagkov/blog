@@ -67,7 +67,7 @@ export default {
           try {
             this.$emit('commentAdded', comment)
             this.$message.success('Comment added')
-          } finally {
+          } catch (e) {
             this.loading = false
           }
         }

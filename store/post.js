@@ -39,5 +39,23 @@ export const actions = {
         resolve(posts.find(post => post._id === id))
       }, 1000)
     })
+  },
+
+  async create ({ commit }, { title, text, image }) {
+    try {
+      const post = new FormData()
+
+      post.append('title', title)
+      post.append('text', text)
+      post.append('image', image, image.name)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+    return await new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve()
+      }, 1000)
+    })
   }
 }

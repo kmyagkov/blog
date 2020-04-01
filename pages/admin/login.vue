@@ -67,7 +67,9 @@ export default {
         break
     }
 
-    this.$message.info(messageText)
+    if (message) {
+      this.$message.info(messageText)
+    }
   },
   methods: {
     submit () {

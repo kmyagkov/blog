@@ -1,61 +1,78 @@
-const posts = [
-  {
-    title: 'Post 1',
-    date: new Date(),
-    views: 0,
-    comments: [],
-    _id: '1'
-  },
-  {
-    title: 'Post 2',
-    date: new Date(),
-    views: 0,
-    comments: [],
-    _id: '2'
-  }
-]
-
 export const actions = {
+  async fetch ({ commit }) {
+    try {
+      return await this.$axios.$get('/api/post')
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+  },
+
+  async fetchById ({ commit }, id) {
+    try {
+      return await this.$axios.$get(`/api/post/${id}`)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
+  },
+
   async fetchAdmin ({ commit }) {
-    return await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(posts)
-      }, 1000)
-    })
+    try {
+      return await this.$axios.$get('/api/post/admin')
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   },
 
-  remove ({ commit }, id) {
-    console.log(`Post ${id} deleted`)
+  async remove ({ commit }, id) {
+    try {
+      return await this.$axios.$delete(`/api/post/admin/${id}`)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   },
 
-  update ({ commit }, { text, id }) {
-    console.log('update')
+  async update ({ commit }, { text, id }) {
+    try {
+      return await this.$axios.$put(`/api/post/admin/${id}`, { text })
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   },
 
   async fetchAdminById ({ commit }, id) {
-    return await new Promise((resolve, reject) => {
-      console.log(posts.find(post => post._id === id))
-      setTimeout(() => {
-        resolve(posts.find(post => post._id === id))
-      }, 1000)
-    })
+    try {
+      return await this.$axios.$get(`/api/post/admin/${id}`)
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   },
 
   async create ({ commit }, { title, text, image }) {
     try {
       const post = new FormData()
-
       post.append('title', title)
       post.append('text', text)
       post.append('image', image, image.name)
+
+      return await this.$axios.$post('/api/post/admin', post)
     } catch (e) {
       commit('setError', e, { root: true })
       throw e
     }
-    return await new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve()
-      }, 1000)
-    })
+  },
+
+  async addView ({ commit }, { views, _id }) {
+    try {
+      return await this.$axios.$put(`/api/post/add/view/${_id}`, { views })
+    } catch (e) {
+      commit('setError', e, { root: true })
+      throw e
+    }
   }
 }

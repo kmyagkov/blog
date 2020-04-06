@@ -57,6 +57,7 @@ export default {
   mounted () {
     const { message } = this.$route.query
     let messageText = ''
+    let messageType = 'info'
 
     switch (message) {
       case 'login':
@@ -64,11 +65,15 @@ export default {
         break
       case 'logout':
         messageText = 'You\'re logged out'
+        messageType = 'success'
         break
+      case 'session':
+        messageText = 'Session expired. Please log in'
+        messageType = 'warning'
     }
 
     if (message) {
-      this.$message.info(messageText)
+      this.$message[messageType](messageText)
     }
   },
   methods: {
@@ -79,8 +84,8 @@ export default {
 
           try {
             const login = {
-              name: this.name,
-              password: this.password
+              name: this.controls.name,
+              password: this.controls.password
             }
 
             await this.$store.dispatch('auth/login', login)

@@ -4,7 +4,7 @@ const keys = require('../keys')
 const User = require('../models/user.model')
 
 module.exports.login = async (request, response) => {
-  const candidate = await User.findOne({ name: request.body.name })
+  const candidate = await User.findOne({ login: request.body.name })
 
   if (candidate) {
     const isPasswordCorrect = bcrypt.compareSync(request.body.password, candidate.password)
@@ -15,9 +15,9 @@ module.exports.login = async (request, response) => {
         userId: candidate._id
       }, keys.JWT, { expiresIn: 60 * 60 })
 
-      response().json({ token })
+      response.json({ token })
     } else {
-      response(401).json({ message: 'Wrong password' })
+      response.status(401).json({ message: 'Wrong password' })
     }
   } else {
     response.status(404).json({ message: 'User not found' })

@@ -1,13 +1,13 @@
 const Post = require('../models/post.model')
 
 module.exports.create = async (request, response) => {
-  const post = new Post({
-    title: request.body.title,
-    text: request.body.text,
-    imageURL: `/${request.file.filename}`
-  })
-
   try {
+    const post = new Post({
+      title: request.body.title,
+      text: request.body.text,
+      imageURL: `/images/${request.file.filename}`
+    })
+
     await post.save()
     response.status(201).json(post)
   } catch (e) {

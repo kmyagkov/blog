@@ -5,35 +5,36 @@
         <i class="el-icon-back" />
       </nuxt-link>
       <h1 class="post__title">
-        Post title
+        {{ post.title }}
       </h1>
       <div class="post__meta">
-        <time>{{ new Date().toLocaleString() }}</time>
+        <time>{{ new Date(post.date).toLocaleString() }}</time>
         <small>
           <i class="el-icon-view" />
-          100
+          {{ post.views }}
         </small>
       </div>
     </header>
     <div class="post__image">
       <img
-        src="https://img.huffingtonpost.com/asset/5e32082624000073080b6660.jpeg?cache=VRURFJSXt4&ops=scalefit_720_noupscale&format=webp"
-        alt="Miami photo"
+        :src="post.imageURL"
+        :alt="post.title"
       >
     </div>
     <div class="post__content">
-      <p>Lorem lorem</p>
+      <vue-markdown :source="post.text" />
     </div>
     <AppCommentForm
       v-if="isCommentsFormShown"
       class="post__comments-form"
       @commentAdded="addComment"
+      :postId="post._id"
     />
     <footer class="post__footer">
-      <div v-if="true" class="post__comments">
+      <div v-if="post.comments.length" class="post__comments">
         <AppComment
-          v-for="comment of 5"
-          :key="comment"
+          v-for="comment of post.comments"
+          :key="comment._id"
           :comment="comment"
           class="post__comment"
         />
@@ -46,13 +47,20 @@
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
 import AppComment from '~/components/Comment'
 import AppCommentForm from '~/components/CommentForm'
 
 export default {
   components: {
     AppComment,
-    AppCommentForm
+    AppCommentForm,
+    VueMarkdown
+  },
+  async asyncData ({ store, params }) {
+    const post = await store.dispatch('post/fetchById', params.id)
+    await store.dispatch('post/addView', post)
+    return { post }
   },
   data () {
     return {
@@ -61,6 +69,7 @@ export default {
   },
   methods: {
     addComment (comment) {
+      this.post.comments.unshift(comment)
       this.isCommentsFormShown = false
     }
   },
@@ -115,7 +124,6 @@ export default {
 }
 
 .post__footer {
-  padding: 1rem;
   border-top: 1px solid var(--border-color);
 }
 
@@ -125,7 +133,12 @@ export default {
   }
 }
 
+.post__comments {
+  padding: 1rem;
+}
+
 .post__tip {
+  padding: 1rem;
   text-align: center;
 }
 </style>

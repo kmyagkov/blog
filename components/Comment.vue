@@ -1,18 +1,23 @@
 <template>
   <el-card class="comment">
     <header class="comment__header">
-      <cite>Person name</cite>
-      <time>{{ new Date().toLocaleString() }}</time>
+      <cite>{{ comment.name }}</cite>
+      <time>{{ new Date(comment.date).toLocaleString() }}</time>
     </header>
     <p class="comment__text">
-      Comment text
+      {{ comment.text }}
     </p>
   </el-card>
 </template>
 
 <script>
 export default {
-
+  props: {
+    comment: {
+      type: Object,
+      required: true
+    }
+  }
 }
 </script>
 

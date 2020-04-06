@@ -8,15 +8,18 @@
       slot="header"
       class="post__header"
     >
-      <h3>Post title</h3>
-      <time>{{ new Date().toLocaleString() }}</time>
+      <h3>{{ post.title }}</h3>
+      <time>{{ new Date(post.date).toLocaleString() }}</time>
     </header>
     <div class="post__body">
       <div class="post__image">
         <img
-          src="https://img.huffingtonpost.com/asset/5e32082624000073080b6660.jpeg?cache=VRURFJSXt4&ops=scalefit_720_noupscale&format=webp"
-          alt="Miami photo"
+          :src="post.imageURL"
+          :alt="post.title"
         >
+      </div>
+      <div class="post__text">
+        <vue-markdown :source="post.text" />
       </div>
     </div>
     <footer class="post__footer">
@@ -28,17 +31,29 @@
       </el-button>
       <span>
         <i class="el-icon-chat-round" />
-        10
+        {{ post.comments.length }}
       </span>
     </footer>
   </el-card>
 </template>
 
 <script>
+import VueMarkdown from 'vue-markdown'
+
 export default {
+  props: {
+    post: {
+      type: Object,
+      required: true
+    }
+  },
+  components: {
+    VueMarkdown
+  },
   methods: {
     openPost () {
-      this.$router.push(`/post/${this.$route.params.id}`)
+      const id = this.post._id
+      this.$router.push(`/post/${id}`)
     }
   }
 }
@@ -58,10 +73,15 @@ export default {
   }
 }
 
+.post__text {
+  padding: 1rem;
+}
+
 .post__footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
+  border-top: 1px solid var(--border-color);
 }
 </style>

@@ -10,8 +10,9 @@
       :lg="10"
     >
       <AppPost
-        v-for="post of 3"
-        :key="post"
+        v-for="post of posts"
+        :key="post._id"
+        :post="post"
       />
     </el-col>
   </el-row>
@@ -21,6 +22,10 @@
 import AppPost from '~/components/Post'
 
 export default {
+  async asyncData ({ store }) {
+    const posts = await store.dispatch('post/fetch')
+    return { posts }
+  },
   components: {
     AppPost
   },

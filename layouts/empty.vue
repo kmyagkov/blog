@@ -12,8 +12,8 @@ export default {
     }
   },
   watch: {
-    error (value) {
-      this.$message.error(value)
+    error (e) {
+      this.$message.error(e.response.data.message)
     }
   }
 }

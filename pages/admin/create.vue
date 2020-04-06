@@ -14,7 +14,7 @@
       </h1>
       <el-form-item label="Title" prop="title">
         <el-input
-          v-model.trim="controls.title"
+          v-model="controls.title"
         />
       </el-form-item>
       <el-form-item label="Type text (.md / .html)" prop="text">

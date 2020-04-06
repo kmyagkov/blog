@@ -59,9 +59,11 @@ export default {
 
           try {
             const user = {
-              name: this.name,
-              password: this.password
+              name: this.controls.name,
+              password: this.controls.password
             }
+
+            console.log(user)
 
             await this.$store.dispatch('auth/createUser', user)
             this.$message.success('User was created successfully')

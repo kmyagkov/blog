@@ -17,14 +17,13 @@ module.exports = {
     '@/theme/index.scss'
   ],
   plugins: [
-    '@/plugins/globals'
+    '@/plugins/globals',
+    '@/plugins/axios'
   ],
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module'
   ],
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios'
   ],
   axios: {},

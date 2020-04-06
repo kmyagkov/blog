@@ -12,12 +12,12 @@
 
     <el-form
       ref="form"
+      class="form"
       :model="controls"
       :rules="rules"
       label-width="120px"
       label-position="top"
       @submit.native.prevent="submit"
-      class="form"
     >
       <h1>
         Edit post
@@ -67,6 +67,9 @@ export default {
   validate ({ params }) {
     return !!params.id
   },
+  mounted () {
+    this.controls.text = this.post.text
+  },
   methods: {
     submit () {
       this.$refs.form.validate(async (valid) => {
@@ -88,10 +91,6 @@ export default {
         }
       })
     }
-  },
-
-  mounted () {
-    this.controls.text = this.post.text
   }
 }
 </script>

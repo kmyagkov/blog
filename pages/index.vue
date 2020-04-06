@@ -22,12 +22,12 @@
 import AppPost from '~/components/Post'
 
 export default {
+  components: {
+    AppPost
+  },
   async asyncData ({ store }) {
     const posts = await store.dispatch('post/fetch')
     return { posts }
-  },
-  components: {
-    AppPost
   },
   head () {
     return {

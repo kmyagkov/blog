@@ -2,7 +2,7 @@
   <el-card class="comment">
     <header class="comment__header">
       <cite>{{ comment.name }}</cite>
-      <time>{{ new Date(comment.date).toLocaleString() }}</time>
+      <time>{{ comment.date | date }}</time>
     </header>
     <p class="comment__text">
       {{ comment.text }}

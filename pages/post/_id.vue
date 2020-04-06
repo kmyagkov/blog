@@ -8,7 +8,7 @@
         {{ post.title }}
       </h1>
       <div class="post__meta">
-        <time>{{ new Date(post.date).toLocaleString() }}</time>
+        <time>{{ post.date | date }}</time>
         <small>
           <i class="el-icon-view" />
           {{ post.views }}
@@ -27,8 +27,8 @@
     <AppCommentForm
       v-if="isCommentsFormShown"
       class="post__comments-form"
+      :post-id="post._id"
       @commentAdded="addComment"
-      :postId="post._id"
     />
     <footer class="post__footer">
       <div v-if="post.comments.length" class="post__comments">

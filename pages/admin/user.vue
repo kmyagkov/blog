@@ -1,12 +1,12 @@
 <template>
   <el-form
     ref="form"
+    class="form"
     :model="controls"
     :rules="rules"
     label-width="120px"
     label-position="top"
     @submit.native.prevent="submit"
-    class="form"
   >
     <h1>
       Create new user
@@ -62,8 +62,6 @@ export default {
               name: this.controls.name,
               password: this.controls.password
             }
-
-            console.log(user)
 
             await this.$store.dispatch('auth/createUser', user)
             this.$message.success('User was created successfully')

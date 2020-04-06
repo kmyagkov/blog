@@ -9,6 +9,7 @@
 import { Bar } from 'vue-chartjs'
 
 export default {
+  extends: Bar,
   props: {
     labels: {
       type: Array,
@@ -22,9 +23,13 @@ export default {
         return []
       }
     },
-    title: String
+    title: {
+      type: String,
+      default () {
+        return 'Title don\'t set'
+      }
+    }
   },
-  extends: Bar,
   mounted () {
     const data = {
       labels: this.labels,

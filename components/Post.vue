@@ -9,7 +9,7 @@
       class="post__header"
     >
       <h3>{{ post.title }}</h3>
-      <time>{{ new Date(post.date).toLocaleString() }}</time>
+      <time>{{ post.date | date }}</time>
     </header>
     <div class="post__body">
       <div class="post__image">
@@ -41,14 +41,14 @@
 import VueMarkdown from 'vue-markdown'
 
 export default {
+  components: {
+    VueMarkdown
+  },
   props: {
     post: {
       type: Object,
       required: true
     }
-  },
-  components: {
-    VueMarkdown
   },
   methods: {
     openPost () {

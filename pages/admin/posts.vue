@@ -34,8 +34,7 @@
         <span style="margin-left: 10px">{{ comments.length }}</span>
       </template>
     </el-table-column>
-    <el-table-column
-      label="Actions">
+    <el-table-column label="Actions">
       <template slot-scope="{ row }">
         <el-button
           size="mini"
@@ -84,7 +83,3 @@ export default {
   }
 }
 </script>
-
-<style scoped>
-
-</style>

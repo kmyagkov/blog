@@ -2,12 +2,12 @@
   <div>
     <el-form
       ref="form"
+      class="form"
       :model="controls"
       :rules="rules"
       label-width="120px"
       label-position="top"
       @submit.native.prevent="submit"
-      class="form"
     >
       <h1>
         Create post
@@ -33,11 +33,11 @@
       </el-dialog>
 
       <el-upload
+        ref="upload"
         action="https://jsonplaceholder.typicode.com/posts/"
         drag
         :on-change="imageChange"
         :auto-upload="false"
-        ref="upload"
       >
         <i class="el-icon-upload" />
         <div class="el-upload__text">

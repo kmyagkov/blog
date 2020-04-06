@@ -18,7 +18,7 @@ export default function ({ $axios, redirect, store }) {
           store.dispatch('auth/logout')
           break
         case 500:
-          console.error('Server 500 error')
+          throw new Error('Server not respond')
       }
     }
   })

@@ -24,7 +24,8 @@ module.exports = {
     '@nuxtjs/eslint-module'
   ],
   modules: [
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/pwa'
   ],
   axios: {},
   env: {

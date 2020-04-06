@@ -90,3 +90,5 @@ sw.*
 *.swp
 
 webpack.config.js
+
+server/keys/keys.dev.js

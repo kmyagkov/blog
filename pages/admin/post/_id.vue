@@ -91,6 +91,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Edit post | ${process.env.appName}`
+    }
   }
 }
 </script>

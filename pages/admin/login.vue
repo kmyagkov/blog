@@ -96,6 +96,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Login | ${process.env.appName}`
+    }
   }
 }
 </script>

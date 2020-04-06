@@ -29,6 +29,11 @@ export default {
   async asyncData ({ store }) {
     const analytics = await store.dispatch('post/getAnalytics')
     return { analytics }
+  },
+  head () {
+    return {
+      title: `Analytics | ${process.env.appName}`
+    }
   }
 }
 </script>

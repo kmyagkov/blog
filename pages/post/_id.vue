@@ -73,6 +73,11 @@ export default {
       this.isCommentsFormShown = false
     }
   },
+  head () {
+    return {
+      title: `${this.post.title} | ${process.env.appName}`
+    }
+  },
   validate ({ params }) {
     return !!params.id
   }

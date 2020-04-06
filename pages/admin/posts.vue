@@ -80,6 +80,11 @@ export default {
         this.$message.success('Post deleted')
       } catch (e) {}
     }
+  },
+  head () {
+    return {
+      title: `Posts | ${process.env.appName}`
+    }
   }
 }
 </script>

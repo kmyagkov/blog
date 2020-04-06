@@ -128,6 +128,11 @@ export default {
         }
       })
     }
+  },
+  head () {
+    return {
+      title: `Create post | ${process.env.appName}`
+    }
   }
 }
 </script>

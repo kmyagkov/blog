@@ -30,6 +30,12 @@ router.delete('/admin/:id',
   controller.remove
 )
 
+router.get(
+  '/admin/get/analytics',
+  passport.authenticate('jwt', { session: false }),
+  controller.getAnalytics
+)
+
 router.get('/', controller.getAll)
 router.get('/:id', controller.getById)
 router.put('/add/view/:id', controller.addView)

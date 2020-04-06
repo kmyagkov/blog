@@ -76,3 +76,23 @@ module.exports.addView = async (request, response) => {
     response.status(500).json(e)
   }
 }
+
+module.exports.getAnalytics = async (request, response) => {
+  try {
+    const posts = await Post.find()
+    const labels = posts.map(post => post.title)
+    const json = {
+      comments: {
+        labels,
+        data: posts.map(post => post.comments.length)
+      },
+      views: {
+        labels,
+        data: posts.map(post => post.views)
+      }
+    }
+    response.json(json)
+  } catch (e) {
+    response.status(500).json(e)
+  }
+}

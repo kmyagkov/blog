@@ -5,12 +5,16 @@ module.exports.create = async (request, response) => {
     const post = new Post({
       title: request.body.title,
       text: request.body.text,
-      imageURL: `/images/${request.file.filename}`
+      imageURL: request.body.imageURL
     })
 
+    console.log(request)
+
     await post.save()
+    console.log('ctr ok')
     response.status(201).json(post)
   } catch (e) {
+    console.log('ctr not ok')
     response.status(500).json(e)
   }
 }

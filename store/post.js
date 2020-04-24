@@ -53,13 +53,8 @@ export const actions = {
     }
   },
 
-  async create ({ commit }, { title, text, image }) {
+  async create ({ commit }, post) {
     try {
-      const post = new FormData()
-      post.append('title', title)
-      post.append('text', text)
-      post.append('image', image, image.name)
-
       return await this.$axios.$post('/api/post/admin', post)
     } catch (e) {
       commit('setError', e, { root: true })

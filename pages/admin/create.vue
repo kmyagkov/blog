@@ -10,7 +10,7 @@
       @submit.native.prevent="submit"
     >
       <h1>
-        Create post
+        Create post 123123
       </h1>
       <el-form-item label="Title" prop="title">
         <el-input
@@ -32,21 +32,18 @@
         <vue-markdown :source="controls.text" />
       </el-dialog>
 
-      <el-upload
-        ref="upload"
-        action="https://jsonplaceholder.typicode.com/posts/"
-        drag
-        :on-change="imageChange"
-        :auto-upload="false"
+      <el-form-item>
+        <p>Add post image: download file from your OS or enter external link</p>
+      </el-form-item>
+
+      <el-form-item
+        label="Image URL"
+        prop="imageURL"
       >
-        <i class="el-icon-upload" />
-        <div class="el-upload__text">
-          Drop file here or <em>click to upload</em>
-        </div>
-        <div class="el-upload__tip">
-          jpg/png
-        </div>
-      </el-upload>
+        <el-input
+          v-model="controls.imageURL"
+        />
+      </el-form-item>
 
       <footer class="form__footer">
         <el-button
@@ -86,9 +83,9 @@ export default {
       loading: false,
       controls: {
         title: '',
-        text: ''
+        text: '',
+        imageURL: ''
       },
-      image: null,
       previewDialog: false,
       rules: {
         title: [
@@ -96,31 +93,30 @@ export default {
         ],
         text: [
           { required: true, message: 'Text is required', trigger: 'blur' }
+        ],
+        imageURL: [
+          { required: true, message: 'Image is required', trigger: 'blur' }
         ]
       }
     }
   },
   methods: {
-    imageChange (file, fileList) {
-      this.image = file.raw
-    },
     submit () {
       this.$refs.form.validate(async (valid) => {
-        if (valid && this.image) {
+        if (valid) {
           this.loading = true
 
           try {
             const createdPost = {
               title: this.controls.title,
               text: this.controls.text,
-              image: this.image
+              imageURL: this.controls.imageURL
             }
 
             await this.$store.dispatch('post/create', createdPost)
             this.controls.title = ''
             this.controls.text = ''
-            this.image = null
-            this.$refs.upload.clearFiles()
+            this.controls.imageURL = ''
             this.$message.success('Post created')
           } catch (e) {} finally {
             this.loading = false

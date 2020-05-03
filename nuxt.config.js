@@ -1,7 +1,7 @@
 module.exports = {
   mode: 'universal',
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Кирилл Мягков | Frontend-разработчик',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -29,9 +29,6 @@ module.exports = {
   ],
   axios: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000'
-  },
-  env: {
-    appName: 'SSR Blog'
   },
   build: {
     transpile: [/^element-ui/],

@@ -8,13 +8,9 @@ module.exports.create = async (request, response) => {
       imageURL: request.body.imageURL
     })
 
-    console.log(request)
-
     await post.save()
-    console.log('ctr ok')
     response.status(201).json(post)
   } catch (e) {
-    console.log('ctr not ok')
     response.status(500).json(e)
   }
 }

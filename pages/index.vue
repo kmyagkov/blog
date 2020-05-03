@@ -28,11 +28,6 @@ export default {
   async asyncData ({ store }) {
     const posts = await store.dispatch('post/fetch')
     return { posts }
-  },
-  head () {
-    return {
-      title: `Main page | ${process.env.appName}`
-    }
   }
 }
 </script>

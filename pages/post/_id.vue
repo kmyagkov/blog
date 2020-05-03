@@ -75,7 +75,7 @@ export default {
   },
   head () {
     return {
-      title: `${this.post.title} | ${process.env.appName}`
+      title: this.post.title
     }
   },
   validate ({ params }) {
@@ -88,6 +88,7 @@ export default {
 .post {
   max-width: 600px;
   margin: 0 auto;
+  background: white;
   border: 1px solid var(--border-color);
   border-radius: 10px;
 }
